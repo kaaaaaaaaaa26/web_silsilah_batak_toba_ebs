@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horas Batak Toba Digital Hub - Tarombo Lengkap</title>
+    <!-- Font Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-gelap: #0e0c0c;
+            --card-bg: rgba(26, 20, 20, 0.94);
+            --card-border: #3d2424;
+            --merah-gorga: #c62828;
+            --merah-terang: #ff5252;
+            --kuning-emas: #ffd700;
+            --kuning-soft: #fff176;
+            --putih: #ffffff;
+            --teks-abu: #e0e0e0;
+            
+            --radius-sm: 12px;
+            --radius-md: 20px;
+            --radius-lg: 32px;
+            --radius-pill: 999px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body, html {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-gelap);
+            color: var(--putih);
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .bg-ulos-wrapper {
+            background: 
+                linear-gradient(rgba(14, 12, 12, 0.90), rgba(14, 12, 12, 0.95)),
+                url('https://images.unsplash.com/photo-1605513524006-063fbdeecba0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover repeat-y;
+            min-height: 100vh;
+        }
+
+        .app-container {
+            width: 100%;
+            max-width: 1050px;
+            margin: 0 auto;
+            padding: 30px 16px;
+        }
+
+        /* --- LANDING PAGE --- */
+        #landing-page {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 85vh;
+            text-align: center;
+        }
+
+        .brand-card {
+            background: var(--card-bg);
+            border: 2px solid var(--kuning-emas);
+            border-radius: var(--radius-lg);
+            padding: 35px 25px;
+            margin-bottom: 25px;
+            width: 100%;
+            max-width: 500px;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.6);
+        }
+
+        h1.horas-title {
+            font-size: clamp(2.5rem, 8vw, 3.8rem);
+            font-weight: 800;
+            color: var(--kuning-emas);
+            letter-spacing: 2px;
+            margin-bottom: 6px;
+        }
+
+        .sub-title {
+            font-size: clamp(0.95rem, 3.5vw, 1.1rem);
+            color: var(--teks-abu);
+        }
+
+        .form-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius-lg);
+            padding: 30px 24px;
+            width: 100%;
+            max-width: 500px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--kuning-emas);
+            margin-bottom: 8px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 15px 18px;
+            background: #221a1a;
+            border: 1px solid #4a2f2f;
+            border-radius: var(--radius-md);
+            color: var(--putih);
+            font-size: 1rem;
+            transition: border-color 0.2s ease;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: var(--kuning-emas);
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, var(--merah-gorga) 0%, #800c0c 100%);
+            color: var(--kuning-emas);
+            border: 1px solid var(--kuning-emas);
+            border-radius: var(--radius-pill);
+            font-size: 1.05rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: transform 0.15s ease;
+        }
+
+        .btn-submit:active {
+            transform: scale(0.97);
+        }
+
+        /* --- DASHBOARD --- */
+        #dashboard {
+            display: none;
+        }
+
+        .header-card {
+            background: var(--card-bg);
+            border: 2px solid var(--merah-gorga);
+            border-radius: var(--radius-lg);
+            padding: 30px 20px;
+            text-align: center;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .user-badge {
+            display: inline-block;
+            background: var(--merah-gorga);
+            color: var(--putih);
+            padding: 8px 24px;
+            border-radius: var(--radius-pill);
+            font-weight: 700;
+            margin-top: 12px;
+            border: 1px solid var(--kuning-emas);
+        }
+
+        .user-badge span {
+            color: var(--kuning-emas);
+        }
+
+        .btn-locate {
+            margin-top: 16px;
+            background: var(--kuning-emas);
+            color: #000;
+            border: none;
+            padding: 10px 22px;
+            border-radius: var(--radius-pill);
+            font-weight: 800;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: transform 0.15s ease;
+        }
+
+        .btn-locate:active {
+            transform: scale(0.95);
+        }
+
+        .info-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            margin-bottom: 25px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        .info-card h2 {
+            color: var(--kuning-emas);
+            font-size: 1.35rem;
+            margin-bottom: 14px;
+            border-bottom: 2px solid var(--merah-gorga);
+            padding-bottom: 8px;
+        }
+
+        .info-card p {
+            line-height: 1.7;
+            color: var(--teks-abu);
+            font-size: 0.98rem;
+        }
+
+        /* --- GALERI ULOS --- */
+        .ulos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            margin-top: 18px;
+        }
+
+        .ulos-card {
+            background: #1c1414;
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .ulos-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--kuning-emas);
+        }
+
+        .ulos-img {
+            width: 100%;
+            height: 170px;
+            object-fit: cover;
+            border-bottom: 1px solid var(--card-border);
+        }
+
+        .ulos-body {
+            padding: 16px;
+        }
+
+        .ulos-body h3 {
+            color: var(--kuning-emas);
+            font-size: 1.05rem;
+            margin-bottom: 6px;
+        }
+
+        .ulos-body p {
+            font-size: 0.88rem;
+            color: var(--teks-abu);
+            line-height: 1.5;
+        }
+
+        /* --- TAROMBO TREE --- */
+        .tarombo-list, .tarombo-list ul {
+            list-style: none;
+            padding-left: 12px;
+        }
+
+        .tarombo-list ul {
+            border-left: 2px dashed var(--merah-gorga);
+            margin-left: 6px;
+            margin-top: 8px;
+            margin-bottom: 8px;
+            padding-left: 12px;
+        }
+
+        .tarombo-list li {
+            margin-bottom: 10px;
+            font-size: 0.93rem;
+            line-height: 1.6;
+        }
+
+        .marga-tag {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: var(--radius-pill);
+            background: #281d1d;
+            color: var(--teks-abu);
+            font-weight: 600;
+            font-size: 0.88rem;
+            margin: 2px 0;
+        }
+
+        .marga-highlight {
+            background: var(--kuning-emas) !important;
+            color: #000000 !important;
+            font-weight: 800 !important;
+            padding: 5px 14px !important;
+            border-radius: var(--radius-pill) !important;
+            border: 2px solid #ffffff;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.85);
+            display: inline-block;
+        }
+
+        /* TABLE PADAN & TUGU */
+        .custom-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+
+        .custom-table th, .custom-table td {
+            padding: 12px 14px;
+            border: 1px solid var(--card-border);
+            text-align: left;
+        }
+
+        .custom-table th {
+            background: #251a1a;
+            color: var(--kuning-emas);
+        }
+
+        .custom-table td {
+            background: #181212;
+            color: var(--teks-abu);
+        }
+
+        /* DALIHAN NA TOLU GRID */
+        .dalihan-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 16px;
+            margin-top: 16px;
+        }
+
+        .dalihan-item {
+            background: #201818;
+            border: 1px solid var(--merah-gorga);
+            padding: 20px;
+            border-radius: var(--radius-md);
+        }
+
+        .dalihan-item h3 {
+            color: var(--kuning-emas);
+            font-size: 1.05rem;
+            margin-bottom: 6px;
+        }
+
+        .dalihan-item p {
+            font-size: 0.88rem;
+            color: var(--teks-abu);
+            line-height: 1.5;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px 15px;
+            font-size: 0.9rem;
+            color: var(--merah-terang);
+            margin-top: 20px;
+        }
+
+        @media (max-width: 600px) {
+            .app-container { padding: 15px 10px; }
+            .info-card { padding: 20px 14px; border-radius: var(--radius-md); }
+            .brand-card, .form-card, .header-card { border-radius: var(--radius-md); }
+            .custom-table th, .custom-table td { padding: 8px 10px; font-size: 0.82rem; }
+        }
+    </style>
+</head>
+<body class="bg-ulos-wrapper">
+
+    <div class="app-container">
+
+        <!-- LANDING PAGE -->
+        <div id="landing-page">
+            <div class="brand-card">
+                <h1 class="horas-title">HORAS!</h1>
+                <p class="sub-title">Silsilah & Ensiklopedia Marga Batak Toba</p>
+            </div>
+
+            <div class="form-card">
+                <div class="form-group">
+                    <label for="inputNama">Nama Depan Anda</label>
+                    <input type="text" id="inputNama" class="input-field" placeholder="Masukkan nama..." required>
+                </div>
+                <div class="form-group">
+                    <label for="inputMarga">Marga Anda</label>
+                    <input type="text" id="inputMarga" class="input-field" placeholder="Contoh: Sinaga, Pasaribu, Sihombing, Situmorang..." required>
+                </div>
+                <button class="btn-submit" onclick="bukaDashboard()">Masuk Ke Tarombo Digital</button>
+            </div>
+        </div>
+
+        <!-- DASHBOARD -->
+        <div id="dashboard">
+            <div class="header-card">
+                <h1 style="color: var(--kuning-emas); font-size: clamp(1.8rem, 5vw, 2.5rem);">
+                    Horas, <span id="namaDisplay"></span>!
+                </h1>
+                <div class="user-badge">
+                    Marga: <span id="margaDisplay"></span>
+                </div>
+                <div>
+                    <button class="btn-locate" onclick="fokusMarga()">📍 Ke Posisi Marga Saya</button>
+                </div>
+            </div>
+
+            <!-- AWAL MULA -->
+            <div class="info-card">
+                <h2>📜 Induk Silsilah Si Raja Batak</h2>
+                <p>
+                    Seluruh marga Batak Toba bersumber dari satu leluhur utama, yaitu <strong>Si Raja Batak</strong> yang menurunkan dua garis keturunan utama: <strong>Guru Tatea Bulan</strong> dan <strong>Raja Isumbaon</strong>.[cite: 4]
+                </p>
+            </div>
+
+            <!-- GALERI ULOS -->
+            <div class="info-card">
+                <h2>🧶 Motif Ulos Khas Batak Toba</h2>
+                <div class="ulos-grid">
+                    <div class="ulos-card">
+                        <img class="ulos-img" src="https://images.unsplash.com/photo-1605513524006-063fbdeecba0?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Ulos Ragidup" loading="lazy">
+                        <div class="ulos-body">
+                            <h3>Ulos Ragidup</h3>
+                            <p>Melambangkan kehidupan dan kebahagiaan. Diberikan pada upacara perkawinan atau kelahiran.[cite: 1, 2]</p>
+                        </div>
+                    </div>
+                    <div class="ulos-card">
+                        <img class="ulos-img" src="https://images.unsplash.com/photo-1579783902614-a3fb3927b675?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Ulos Ragi Hotang" loading="lazy">
+                        <div class="ulos-body">
+                            <h3>Ulos Ragi Hotang</h3>
+                            <p>Melambangkan ikatan persaudaraan yang kokoh dan doa restu orang tua.[cite: 1, 2]</p>
+                        </div>
+                    </div>
+                    <div class="ulos-card">
+                        <img class="ulos-img" src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Ulos Sadum" loading="lazy">
+                        <div class="ulos-body">
+                            <h3>Ulos Sadum</h3>
+                            <p>Penuh warna cerah dan emas, simbol keceriaan serta sukacita dalam hajatan adat.[cite: 1, 2]</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAROMBO LENGKAP BATA TOBA -->
+            <div class="info-card">
+                <h2>🌳 Tarombo Lengkap Batak Toba</h2>
+                <p style="font-size: 0.88rem; color: #aaa; margin-bottom: 15px;">
+                    *Marga yang Anda masukkan ditandai dengan tag <strong>Kuning Emas Oval</strong>.
+                </p>
+
+                <ul class="tarombo-list">
+                    <li>
+                        <strong style="color: var(--kuning-emas); font-size: 1.15rem;">SI RAJA BATAK</strong>[cite: 4]
+                        <ul>
+                            <!-- 1. GURU TATEA BULAN -->
+                            <li>
+                                <strong style="color: var(--merah-terang); font-size: 1rem;">1. GURU TATEA BULAN</strong>[cite: 4]
+                                <ul>
+                                    <li>
+                                        <strong>Tuan Sariburaja (Rumpun Borbor):</strong>[cite: 4]
+                                        <br>
+                                        Pasaribu: <span class="marga-tag" data-marga="pasaribu">Pasaribu</span>, <span class="marga-tag" data-marga="habeahan">Habeahan</span>, <span class="marga-tag" data-marga="pasaribu gorat">Pasaribu Gorat</span>, <span class="marga-tag" data-marga="batubara">Batubara</span>[cite: 4]
+                                        <br>
+                                        Cabang Borbor: <span class="marga-tag" data-marga="sipahutar">Sipahutar</span>, <span class="marga-tag" data-marga="harahap">Harahap</span>, <span class="marga-tag" data-marga="tanjung">Tanjung</span>, <span class="marga-tag" data-marga="matondang">Matondang</span>, <span class="marga-tag" data-marga="tarihoran">Tarihoran</span>, <span class="marga-tag" data-marga="sarumpaet">Sarumpaet</span>, <span class="marga-tag" data-marga="parapat">Parapat</span>[cite: 4]
+                                    </li>
+                                    <li>Raja Biakbiak / Raja Uti[cite: 4]</li>
+                                    <li>
+                                        <strong>Limbong:</strong> <span class="marga-tag" data-marga="limbong">Limbong</span>, <span class="marga-tag" data-marga="limbong sihole">Limbong Sihole</span>, <span class="marga-tag" data-marga="limbong habinsaran">Limbong Habinsaran</span>[cite: 4]
+                                    </li>
+                                    <li>
+                                        <strong>Sagala:</strong> <span class="marga-tag" data-marga="sagala">Sagala</span>, <span class="marga-tag" data-marga="sagala hutabarat">Sagala Hutabarat</span>, <span class="marga-tag" data-marga="sagala bangkara">Sagala Bangkara</span>, <span class="marga-tag" data-marga="sagala hutabalian">Sagala Hutabalian</span>[cite: 4]
+                                    </li>
+                                    <li>
+                                        <strong>Silau Raja:</strong>[cite: 4]
+                                        <br>
+                                        <span class="marga-tag" data-marga="malau">Malau</span> (<span class="marga-tag" data-marga="malau raja">Malau Raja</span>, <span class="marga-tag" data-marga="manik malau">Manik Malau</span>, <span class="marga-tag" data-marga="ambarita malau">Ambarita Malau</span>)[cite: 4]
+                                        <br>
+                                        <span class="marga-tag" data-marga="manik">Manik</span> (<span class="marga-tag" data-marga="manik raja">Manik Raja</span>)[cite: 4]
+                                        <br>
+                                        <span class="marga-tag" data-marga="ambarita">Ambarita</span> (<span class="marga-tag" data-marga="ambarita raja">Ambarita Raja</span>)[cite: 4]
+                                        <br>
+                                        <span class="marga-tag" data-marga="gurning">Gurning</span> (<span class="marga-tag" data-marga="gurning raja">Gurning Raja</span>)[cite: 4]
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <br>
+
+                            <!-- 2. RAJA ISUMBAON -->
+                            <li>
+                                <strong style="color: var(--merah-terang); font-size: 1rem;">2. RAJA ISUMBAON</strong>[cite: 4]
+                                <ul>
+                                    <!-- A. PARNA -->
+                                    <li>
+                                        <strong style="color: var(--kuning-emas);">A. Rumpun Nai Ambaton (PARNA)</strong>[cite: 4]
+                                        <ul>
+                                            <li>
+                                                <strong>Simbolon Tua:</strong> <span class="marga-tag" data-marga="simbolon">Simbolon</span> (Juara Bulan, Tuan Nahoda, Altong, Pande Sahata, Suhut Nihuta, Sirimbang, Hapusor)[cite: 4]
+                                            </li>
+                                            <li>
+                                                <strong>Tamba & Simbisa:</strong> <span class="marga-tag" data-marga="tamba">Tamba Tua</span>, <span class="marga-tag" data-marga="sitanggang">Sitanggang</span> (Gusar, Bau, Lipan, Silo), <span class="marga-tag" data-marga="sijabat">Sijabat</span>, <span class="marga-tag" data-marga="siadari">Siadari</span>, <span class="marga-tag" data-marga="sidabutar">Sidabutar</span>, <span class="marga-tag" data-marga="sidabalok">Sidabalok</span>[cite: 4]
+                                            </li>
+                                            <li>
+                                                <strong>Munthe & Saragi:</strong> <span class="marga-tag" data-marga="munthe">Munthe</span>, <span class="marga-tag" data-marga="saragih">Saragih</span> (Dasmak, Garingging, Simarmata, Tambahan), <span class="marga-tag" data-marga="turnip">Turnip</span>, <span class="marga-tag" data-marga="rumahorbo">Rumahorbo</span>, <span class="marga-tag" data-marga="napitu">Napitu</span>[cite: 4]
+                                            </li>
+                                            <li>
+                                                <strong>Cabang Parna Lainnya:</strong> <span class="marga-tag" data-marga="baringan">Baringan</span>, <span class="marga-tag" data-marga="tengker">Tengker</span>, <span class="marga-tag" data-marga="sendideber">Sendideber</span>, <span class="marga-tag" data-marga="capah">Capah</span>, <span class="marga-tag" data-marga="ginting">Ginting</span> (Garamata, Suka, Pase, Manik), <span class="marga-tag" data-marga="haro">Haro</span>, <span class="marga-tag" data-marga="pangaribuan parna">Pangaribuan (Parna)</span>[cite: 4]
+                                            </li>
+                                        </ul>
+                                    </li>
+
+                                    <!-- B. RAJA LONTUNG -->
+                                    <li>
+                                        <strong style="color: var(--kuning-emas);">B. Rumpun Raja Lontung (Si Sia Sada Ina)</strong>[cite: 4]
+                                        <ul>
+                                            <li>
+                                                <strong>1. Situmorang:</strong> <span class="marga-tag" data-marga="situmorang">Situmorang</span>, <span class="marga-tag" data-marga="lumban pande">Lumban Pande</span>, <span class="marga-tag" data-marga="lumban nahor">Lumban Nahor</span>, <span class="marga-tag" data-marga="suhut nihuta">Suhut Nihuta</span>, <span class="marga-tag" data-marga="siringoringo">Siringoringo</span>, <span class="marga-tag" data-marga="rumapea">Rumapea</span>, <span class="marga-tag" data-marga="sitohang">Sitohang</span>[cite: 5]
+                                            </li>
+                                            <li>
+                                                <strong>2. Sinaga:</strong> <span class="marga-tag" data-marga="sinaga">Sinaga</span> (Sinaga Bonor, Sinaga Ratus, Sinaga Uruk, Simanjorang, Simandalahi, Saporco)[cite: 5]
+                                            </li>
+                                            <li>
+                                                <strong>3. Pandiangan:</strong> <span class="marga-tag" data-marga="pandiangan">Pandiangan</span>, <span class="marga-tag" data-marga="gultom">Gultom</span>, <span class="marga-tag" data-marga="samosir">Samosir</span>, <span class="marga-tag" data-marga="pakpahan">Pakpahan</span>, <span class="marga-tag" data-marga="sitinjak">Sitinjak</span>, <span class="marga-tag" data-marga="siagian">Siagian</span>, <span class="marga-tag" data-marga="pardosi">Pardosi</span>, <span class="marga-tag" data-marga="nambela">Nambela</span>[cite: 5]
+                                            </li>
+                                            <li>
+                                                <strong>4. Nainggolan:</strong> <span class="marga-tag" data-marga="nainggolan">Nainggolan</span> (Rumahombar, Tuan Sitengka, Lumban Raja, Batuara, Parhusip, Siahaan Nainggolan, Hutabalian)[cite: 5]
+                                            </li>
+                                            <li>
+                                                <strong>5. Simatupang:</strong> <span class="marga-tag" data-marga="simatupang">Simatupang</span>, <span class="marga-tag" data-marga="togatorop">Togatorop</span>, <span class="marga-tag" data-marga="sianturi">Sianturi</span>, <span class="marga-tag" data-marga="siburian">Siburian</span>[cite: 5]
+                                            </li>
+                                            <li>
+                                                <strong>6. Aritonang:</strong> <span class="marga-tag" data-marga="aritonang">Aritonang</span>, <span class="marga-tag" data-marga="ompusunggu">Ompusunggu</span>, <span class="marga-tag" data-marga="rajagukguk">Rajagukguk</span>, <span class="marga-tag" data-marga="simaremare">Simaremare</span>[cite: 5]
+                                            </li>
+                                            <li>
+                                                <strong>7. Siregar:</strong> <span class="marga-tag" data-marga="siregar">Siregar</span> (Silo, Dongoran, Silali, Baumi)[cite: 5]
+                                            </li>
+                                        </ul>
+                                    </li>
+
+                                    <!-- C. RAJA SUMBA & SOBU -->
+                                    <li>
+                                        <strong style="color: var(--kuning-emas);">C. Rumpun Raja Sumba, Sobu & Silindung</strong>[cite: 4, 5]
+                                        <ul>
+                                            <li>
+                                                <strong>Toga Sihombing:</strong> <span class="marga-tag" data-marga="silaban">Silaban</span> (Borsak Junjungan), <span class="marga-tag" data-marga="lumbantoruan">Lumbantoruan</span> (Borsak Sirumonggur), <span class="marga-tag" data-marga="nababan">Nababan</span> (Borsak Mangambe), <span class="marga-tag" data-marga="hutasoit">Hutasoit</span> (Borsak Bimbinan)[cite: 5]
+                                            </li>
+                                            <li>
+                                                <strong>Toga Simamora:</strong> <span class="marga-tag" data-marga="purba">Purba</span> (Purba Tua, Purba Sidadolog, Purba Dasuha), <span class="marga-tag" data-marga="manalu">Manalu</span>, <span class="marga-tag" data-marga="debataraja">Debataraja</span>, <span class="marga-tag" data-marga="rambe">Rambe</span>[cite: 5]
+                                            </li>
+                                            <li>
+                                                <strong>Toga Sobu / Silindung (Guru Mangaloksa & Rumpun):</strong> <span class="marga-tag" data-marga="hutabarat">Hutabarat</span>, <span class="marga-tag" data-marga="panggabean">Panggabean</span>, <span class="marga-tag" data-marga="hutagalung">Hutagalung</span>, <span class="marga-tag" data-marga="hutapea">Hutapea</span>, <span class="marga-tag" data-marga="lumban tobing">Lumban Tobing</span>, <span class="marga-tag" data-marga="sitompul">Sitompul</span>, <span class="marga-tag" data-marga="hasibuan">Hasibuan</span>[cite: 5]
+                                            </li>
+                                            <li>
+                                                <strong>Toba Holbung & Sonak Malela:</strong> <span class="marga-tag" data-marga="marpaung">Marpaung</span>, <span class="marga-tag" data-marga="simangunsong">Simangunsong</span>, <span class="marga-tag" data-marga="napitupulu">Napitupulu</span>, <span class="marga-tag" data-marga="pardede">Pardede</span>[cite: 5]
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- PERJANJIAN SAKRAL (PADAN) -->
+            <div class="info-card">
+                <h2>🤝 Perjanjian Sakral (Padan) Antar Marga</h2>
+                <table class="custom-table">
+                    <thead>
+                        <tr>
+                            <th>Kelompok Padan</th>
+                            <th>Marga Terlibat</th>
+                            <th>Ketentuan Adat</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Padan PARNA</strong></td>
+                            <td>Seluruh marga rumpun Nai Ambaton[cite: 5]</td>
+                            <td>Dilarang keras saling menikahi (<em>Sisada Anak Sisada Boru</em>)[cite: 5].</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Padan Nainggolan - Siregar</strong></td>
+                            <td>Nainggolan dan Siregar[cite: 5]</td>
+                            <td>Terikat perjanjian persaudaraan kuno, dilarang saling menikahi[cite: 5].</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Padan Tampubolon - Silalahi</strong></td>
+                            <td>Tampubolon dan Silalahi Sabungan[cite: 5]</td>
+                            <td>Saling menganggap saudara sedarah[cite: 5].</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Padan Pasaribu - Matondang</strong></td>
+                            <td>Pasaribu dan Matondang[cite: 5]</td>
+                            <td>Ikatan perlindungan dan saudara dari garis Borbor[cite: 5].</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Padan Sihombing - Simamora</strong></td>
+                            <td>Toga Sihombing dan Toga Simamora[cite: 5]</td>
+                            <td>Sering disebut ikatan "Toga Sumba", memiliki kedudukan adat khusus[cite: 5].</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- DALIHAN NA TOLU -->
+            <div class="info-card">
+                <h2>⚖️ Dalihan Na Tolu</h2>
+                <div class="dalihan-container">
+                    <div class="dalihan-item">
+                        <h3>Somba Marhula-hula</h3>
+                        <p>Hormat dan santun kepada pihak keluarga pemberi istri[cite: 3].</p>
+                    </div>
+                    <div class="dalihan-item">
+                        <h3>Elek Marboru</h3>
+                        <p>Mengayomi dan penuh kasih kepada pihak penerima istri[cite: 3].</p>
+                    </div>
+                    <div class="dalihan-item">
+                        <h3>Manat Mardongan Tubu</h3>
+                        <p>Cermat dan menjaga persatuan sesama kerabat se-marga[cite: 3].</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SITUS HISTORIS & TUGU -->
+            <div class="info-card">
+                <h2>🗿 Peta Situs Sejarah & Tugu Marga</h2>
+                <table class="custom-table">
+                    <thead>
+                        <tr>
+                            <th>Nama Tugu / Situs</th>
+                            <th>Lokasi</th>
+                            <th>Signifikansi Sejarah</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Tugu Arian Guru Tatea Bulan</strong></td>
+                            <td>Pusuk Buhit, Sianjur Mulamula, Samosir[cite: 5]</td>
+                            <td>Pusat penghormatan seluruh keturunan Guru Tatea Bulan[cite: 5].</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Tugu Raja Lontung</strong></td>
+                            <td>Desa Sabulan, Sitiotio, Samosir[cite: 5]</td>
+                            <td>Monumen pemersatu cabang Raja Lontung[cite: 5].</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Tugu Simbolon & Tugu Parna</strong></td>
+                            <td>Pangururan & Simanindo, Samosir[cite: 6]</td>
+                            <td>Simbol persatuan keturunan Raja Nai Ambaton[cite: 6].</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Tugu Sonak Malela</strong></td>
+                            <td>Balige, Toba[cite: 6]</td>
+                            <td>Monumen persatuan Simangunsong, Marpaung, Napitupulu, Pardede[cite: 6].</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+        <footer>
+            Mauliate Godang • Ensiklopedia Tarombo Batak Toba
+        </footer>
+
+    </div>
+
+    <script>
+        function bukaDashboard() {
+            const nama = document.getElementById('inputNama').value.trim();
+            const marga = document.getElementById('inputMarga').value.trim();
+
+            if (!nama || !marga) {
+                alert("Harap isi Nama dan Marga terlebih dahulu!");
+                return;
+            }
+
+            document.getElementById('landing-page').style.display = 'none';
+            document.getElementById('dashboard').style.display = 'block';
+
+            document.getElementById('namaDisplay').innerText = nama;
+            document.getElementById('margaDisplay').innerText = marga.toUpperCase();
+
+            const margaClean = marga.toLowerCase().replace(/^(raja|toga)\s+/, '');
+            const tags = document.querySelectorAll('.marga-tag');
+
+            tags.forEach(tag => {
+                tag.classList.remove('marga-highlight');
+                const tagData = (tag.getAttribute('data-marga') || '').toLowerCase();
+                const tagText = tag.innerText.toLowerCase();
+
+                if (tagData.includes(margaClean) || tagText.includes(margaClean) || margaClean.includes(tagData)) {
+                    tag.classList.add('marga-highlight');
+                }
+            });
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function fokusMarga() {
+            const target = document.querySelector('.marga-highlight');
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            } else {
+                alert("Marga tidak ditemukan di bagan utama ini.");
+            }
+        }
+    </script>
+</body>
+</html>
